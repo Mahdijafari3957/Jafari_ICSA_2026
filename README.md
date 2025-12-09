@@ -1,4 +1,4 @@
-# Using Architectural Zones to Generate Information-Flow-Aware Abstract Penetration Test Cases - ICSA_2026
+# Using Architectural Zones to Generate Information-Flow-Aware Abstract Penetration Test Cases - ICSA2026
 # edu.kit.pentest
 
 A set of Eclipse Modeling / Palladio-based projects for **Using Architectural Zones to Generate Information-Flow-Aware Abstract Penetration Test Cases**.
