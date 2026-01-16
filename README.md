@@ -106,9 +106,6 @@ The zone extension metamodel to PCM.
 To re-run the generation logic:
 
 1. In the **inner Eclipse instance**, ensure all relevant projects are open:
-   - `edu.kit.pentest.model`
-   - `edu.kit.pentest.sidechannel`
-   - `edu.kit.pentest.zone`
    - `edu.kit.pentest.generation`
    - `edu.kit.pentest.runningexample`
    - `edu.kit.pentest.evaluation`
@@ -118,6 +115,7 @@ To re-run the generation logic:
      - `edu.kit.pentest.runningexample.test.RunningExampleTest`
    - For the evaluation scenarios:
      - `edu.kit.pentest.evaluation.EvaluationTest`
+    
 
 3. **Windows-specific note**  
    On Windows, there is a known issue when executing the tests multiple times:
@@ -133,4 +131,27 @@ To re-run the generation logic:
 
 - If you use the replication package with pre-generated projects, check and adjust any project-specific paths as needed.
 - The `models` folders and `pentestcase.xmi` files in the running example and evaluation projects are good starting points to understand the generated penetration test cases.
+- Eclipse must be set to use **Java 17** for compiling the project. (should be there by default)
+- JUnit5 must be set to use as a testing version. (should be there by default)
 
+## Troubleshooting
+
+### 1) `Test cannot be resolved to a type` / `@Test` is red in Eclipse
+**Cause:**
+Wrong JUnit import OR JUnit is missing from the build path.
+
+**Fix:**
+make sure JUnit 5 exists in the project build path:
+Project → Properties → Java Build Path → Libraries
+Add JUnit 5
+
+### 2) `Eclipse is running / building with the wrong Java version
+**Cause:** 
+Eclipse IDE may use one Java version, while the project/compiler uses another.
+
+**Fix(Project build Java version):**
+- Window → Preferences → Java → Installed JREs
+  - Select the correct JDK (e.g., Java 17) and set it as Default
+- Project → Properties → Java Compiler
+  - Set the Compiler compliance level to the required version (e.g., 17)
+Restart Eclipse after editing.
