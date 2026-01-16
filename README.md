@@ -154,4 +154,4 @@ Eclipse IDE may use one Java version, while the project/compiler uses another.
   - Select the correct JDK (e.g., Java 17) and set it as Default
 - Project → Properties → Java Compiler
   - Set the Compiler compliance level to the required version (e.g., 17)
-Restart Eclipse after editing.
+- Restart Eclipse after editing.
