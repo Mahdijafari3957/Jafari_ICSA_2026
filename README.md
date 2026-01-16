@@ -141,9 +141,9 @@ To re-run the generation logic:
 Wrong JUnit import OR JUnit is missing from the build path.
 
 **Fix:**
-make sure JUnit 5 exists in the project build path:
-Project → Properties → Java Build Path → Libraries
-Add JUnit 5
+- make sure JUnit 5 exists in the project build path:
+- Project → Properties → Java Build Path → Libraries
+- Add JUnit 5
 
 ### 2) `Eclipse is running / building with the wrong Java version
 **Cause:** 
