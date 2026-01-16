@@ -132,7 +132,7 @@ To re-run the generation logic:
 - If you use the replication package with pre-generated projects, check and adjust any project-specific paths as needed.
 - The `models` folders and `pentestcase.xmi` files in the running example and evaluation projects are good starting points to understand the generated penetration test cases.
 - Eclipse must be set to use **Java 17** for compiling the project. (should be there by default)
-- JUnit5 must be set to use as a testing version. (should be there by default)
+- **JUnit5** must be set to use as a testing version. (should be there by default)
 
 ## Troubleshooting
 
