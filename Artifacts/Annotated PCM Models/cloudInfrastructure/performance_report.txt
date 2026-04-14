@@ -1,0 +1,6 @@
+Performance Evaluation (end-to-end = model loading + generation; export excluded)
+CaseStudy=Cloud
+K=20
+RuntimesMs=[8, 7, 6, 6, 7, 6, 7, 7, 7, 6, 6, 8, 7, 7, 7, 6, 6, 8, 6, 5]
+MedianMs=7
+ModelStats=Cloud & 5 & 0 & 16 & 4 & 0 & 0 & 0 & 0\\[]

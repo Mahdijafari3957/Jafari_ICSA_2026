@@ -1,0 +1,6 @@
+Performance Evaluation (end-to-end = model loading + generation; export excluded)
+CaseStudy=Scalability
+K=20
+RuntimesMs=[7, 6, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 4, 3, 4, 6, 1, 2, 3, 3]
+MedianMs=4
+ModelStats=Scalability & 2 & 1 & 2 & 1 & 2 & 2 & 3 & 4\\[2072076651, 366226635, 664656217, 1178090104, 918716909, 38027658, 1264191370]
