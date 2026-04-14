@@ -7,26 +7,23 @@ This repository contains:
 
 - Metamodels for penetration test cases and their extensions
 - Generation logic for abstract pen test cases
-- A running example from the associated paper
-- Evaluation scenarios and models
+- Evaluation scenarios and models 
 
 ---
 
 ## Projects
 
 ### `edu.kit.pentest.evaluation`
-The evaluation scenarios and models used to assess the approach.
+The evaluation scenarios and models used to assess the approach, alongside the running example presented in the paper, for each case study, including:
+- PCM models in the `models` folder
+- `pentestcase.xmi` containing the generated penetration test cases
+- `performance_report.txt` containing the performance evaluation results.
 
 ### `edu.kit.pentest.generation`
 Generation logic for penetration test cases based on PCM architectures and the provided extensions.
 
 ### `edu.kit.pentest.model`
 The core metamodel of the penetration test cases.
-
-### `edu.kit.pentest.runningexample`
-The running example from the paper, including:
-- Example models in the `models` folder
-- `pentestcase.xmi` containing the generated penetration test cases
 
 ### `edu.kit.pentest.sidechannel`
 The side-channel extension metamodel to the Palladio Component Model (PCM).
@@ -94,8 +91,6 @@ The zone extension metamodel to PCM.
    - In the **inner Eclipse instance**, import/open:
      - `edu.kit.pentest.generation`  
        → Contains the generation code for abstract pen test cases.
-     - `edu.kit.pentest.runningexample`  
-       → Contains the running example models in the `models` folder and `pentestcase.xmi` with generated pen test cases.
      - `edu.kit.pentest.evaluation`  
        → Contains evaluation models in the `models` folder and subfolders, plus `pentestcase.xmi` with generated pen test cases.
 
@@ -107,14 +102,13 @@ To re-run the generation logic:
 
 1. In the **inner Eclipse instance**, ensure all relevant projects are open:
    - `edu.kit.pentest.generation`
-   - `edu.kit.pentest.runningexample`
    - `edu.kit.pentest.evaluation`
 
 2. Run the following JUnit tests:
-   - For the running example:
-     - `edu.kit.pentest.runningexample.test.RunningExampleTest`
-   - For the evaluation scenarios:
+   - For generating APTC for evaluation scenarios:
      - `edu.kit.pentest.evaluation.EvaluationTest`
+   - For executing the performance metric for evaluation scenarios:
+     - `edu.kit.pentest.evaluation.PerformanceEvaluationTest`
     
 
 3. **Windows-specific note**  
