@@ -105,7 +105,7 @@ To re-run the generation logic:
    - `edu.kit.pentest.evaluation`
 
 2. Run the following JUnit tests:
-   - For generating APTC for evaluation scenarios:
+   - For generating APTCs for evaluation scenarios:
      - `edu.kit.pentest.evaluation.EvaluationTest`
    - For executing the performance metric for evaluation scenarios:
      - `edu.kit.pentest.evaluation.PerformanceEvaluationTest`
