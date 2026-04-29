@@ -120,6 +120,11 @@ To re-run the generation logic:
      - Then run the tests again.
 
 ---
+## Evaluationary Artifacts
+- The prompt used to evaluate the Usefulness metric is available in the `/Artifacts/Prompts` directory.
+- The Performance metric can be evaluated using the script `PerformanceEvaluationTest.java` located at `/Artifacts/edu.kit.pentest.evaluation/`.
+
+---  
 
 ## Notes
 
