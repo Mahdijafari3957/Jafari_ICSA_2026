@@ -31,6 +31,13 @@ Usefulness Definition:
 - If the APTC implies a relation not supported by the PCM View or system description, lower the score and explain why
 - Do not silently repair inconsistencies or missing architectural links
 
+**Output Format:**
+Produce your outputs as a table with three columns:
+- a number (#)
+- APTC summary
+- Usefulness Score
+- Rationale
+
 Now evaluate the following inputs:
 (1) PCM View:
 <PASTE HERE>
