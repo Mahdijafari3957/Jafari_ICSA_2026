@@ -37,7 +37,7 @@ These rules operationalize the paper's 1–5 scale (report the final score; just
 - **4 = Useful:** plausible and mostly clearly linked to architectural elements, with an understandable attacker-relevant implication; minor details may need interpretation.
 - **5 = Highly useful:** plausible and clearly linked to specific architectural elements, with a clear attacker-relevant implication (what is leaked/abused and why it matters).
 
-**Constraints and anti-hallucination rules (mandatory):**
+**Constraints:**
 - APTC structural/XML format is **not** the subject of the evaluation.
 - Evaluate only at the abstraction level supported by the paper's APTC metamodel and purpose. The metamodel **excludes `weakness` and exploit-level detail** — do not reward or penalize based on attack steps, payloads, CWE IDs, or any attribute not present in the APTC.
 - Focus on **confidentiality-relevant information-flow / leakage** reasoning. Treat zone differences as **confidentiality-domain differences**.
