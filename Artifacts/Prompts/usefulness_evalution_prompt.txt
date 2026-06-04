@@ -9,41 +9,60 @@ Given:
 
 evaluate the **usefulness** of each APTC for **architecture-level security reasoning**.
 
-Your job is to rate the Usefulness of each APTC for architecture-level security reasoning according to following definition and scoring system between 1 to 5.
-Usefulness Definition:
-1 = Not useful: implausible security concern or too generic to support meaningful reasoning.
-3 = Partially useful: plausible concern, but only partially informative because either
-(a) the architectural linkage is unclear/incomplete or
-(b) the attacker-relevant implication is unclear/incomplete.
-5 = Highly useful: plausible concern and clearly linked to specific architectural elements (e.g., entry point / asset / connector / container / deployment) with an understandable attacker-relevant implication (what could be inferred/leaked/abused and why that matters).
+Every APTC you receive was generated only for a *forbidden* high-to-low confidentiality-zone crossing (`H ↝̸ L`). **Plausibility is therefore established by construction — do not re-judge whether the concern is plausible, and do not invent attack narratives.** Score each APTC only on how *informative* it is, along the two axes defined below.
 
-**Constraint:**
-- APTC structural format is not the subject of the evaluation
-- Evaluate the APTC only at the abstraction level supported by the paper’s **APTC metamodel and purpose**
-- Do not expect extra penetration-testing attributes beyond that abstraction
-- Focus primarily on **confidentiality-relevant information flow / leakage reasoning**
-- Treat zone differences as indicators of **confidentiality-domain differences**
-- If an APTC uses a generic or unknown side channel such as **Investigate**, do not treat it as automatically low quality; it can still be useful as a weaker prompt for architectural review
-- Use exact component, assembly, container, and connector/linking-resource names from the provided architecture description; do not invent any new ones
-- If no linking resource is specified in the APTC, interpret it as a **co-location** case
-- If the PCM model indicates the entry point and asset are on different containers in such a case, treat the APTC as incomplete and reflect that in the score/rationale
-- If entry point and asset refer to the same assembly/deployment, do not automatically mark the APTC useless, but treat it as weaker unless the attacker-vs.-victim distinction is still understandable
-- If the APTC implies a relation not supported by the PCM View or system description, lower the score and explain why
-- Do not silently repair inconsistencies or missing architectural links
+**Scoring procedure (apply per APTC, in order):**
+
+**Step 1 — Axis A: Architectural linkage.** Against the PCM View, check: (1) *Resolve* — `entryPoint` and `asset` each map to a real assembly + container; (2) *Path* — relation supported (co-location if same container with no `linkingResource`, or a `linkingResource` connecting exactly those two containers); (3) *Distinct* — different deployments (attacker ≠ victim).
+- **A = 2:** all three hold.
+- **A = 1:** they resolve, but one slips without contradicting the model (e.g., `entryPoint` == `asset`; or co-location asserted across different containers with no `linkingResource`).
+- **A = 0:** an endpoint doesn't resolve, or an asserted relation contradicts the model (e.g., a `linkingResource` that does not connect the asset's container).
+
+**Step 2 — Axis B: Attacker-relevant implication.** From the side-channel name and the zone gap:
+- **B = 2:** a named, concrete channel (timing / visual / storage, …) over a real `H→L` gap — channel type plus crossing make the leakage understandable; do **not** require the exact leaked value (below this abstraction).
+- **B = 1:** a named channel whose *type* is non-standard or ambiguous (rare).
+- **B = 0:** a generic/unknown channel (e.g., **Investigate**) — concern identified, mechanism unspecified.
+
+**Step 3 — Score (stop at first match):**
+- **5:** A = 2 and B = 2.
+- **4:** one axis = 2, the other = 1.
+- **3:** one axis = 2 and the other = 0, or both = 1.
+- **2:** one axis = 1 and the other = 0.
+- **1:** A = 0 and B = 0.
+
+These rules operationalize the paper's 1–5 scale (report the final score; justify via A and B in the rationale):
+- **1 = Not useful:** implausible or too generic to support meaningful reasoning.
+- **2 = Weakly useful:** linkage and/or attacker-relevant implication mostly unclear or incomplete.
+- **3 = Partially useful:** plausible, but either the architectural linkage or the attacker-relevant implication is unclear/incomplete.
+- **4 = Useful:** plausible and mostly clearly linked to architectural elements, with an understandable attacker-relevant implication; minor details may need interpretation.
+- **5 = Highly useful:** plausible and clearly linked to specific architectural elements, with a clear attacker-relevant implication (what is leaked/abused and why it matters).
+
+**Constraints and anti-hallucination rules (mandatory):**
+- APTC structural/XML format is **not** the subject of the evaluation.
+- Evaluate only at the abstraction level supported by the paper's APTC metamodel and purpose. The metamodel **excludes `weakness` and exploit-level detail** — do not reward or penalize based on attack steps, payloads, CWE IDs, or any attribute not present in the APTC.
+- Focus on **confidentiality-relevant information-flow / leakage** reasoning. Treat zone differences as **confidentiality-domain differences**.
+- **Investigate (generic/unknown channel) is not automatically low quality**, but its implication is incomplete by definition: set **B = 0**, do **not** infer, name, or assume a concrete mechanism, and therefore **cap the score at 3** no matter how strong the linkage is. It remains valuable as a weaker prompt for architectural review.
+- Use exact component, assembly, container, and connector/linking-resource names from the provided architecture description; **do not invent any names**.
+- **If no linking resource is specified, interpret it as co-location.** If the PCM then shows the entry point and asset on different containers, treat the APTC as incomplete (A ≤ 1) and reflect that in score and rationale.
+- **Credit a connector only if** that `linkingResource` appears in the resource environment connecting exactly the entry-point and asset containers; otherwise treat the linkage as broken (A = 0). Do **not** assume any path not present in the model.
+- If entry point and asset are the same assembly/deployment, do not mark the APTC useless, but treat it as weaker (A ≤ 1) unless the attacker-vs.-victim distinction is still understandable.
+- If the APTC implies any relation not supported by the PCM View or system description, lower the score (A = 0) and explain why.
+- **Do not silently repair** inconsistencies or missing architectural links — surface them.
 
 **Output Format:**
-Produce your outputs as a table with three columns:
-- a number (#)
-- APTC summary
-- Usefulness Score
-- Rationale
+Produce a table with the following columns:
+- **#** — a number
+- **APTC summary** — using exact entry-point, asset, container, and connector/linking-resource names
+- **Usefulness Score (1–5)**
+- **Rationale** — must state the resolved field values (entry-point assembly+container; asset assembly+container; linking resource; side-channel type), then the A and B verdicts that produce the score.
 
 Now evaluate the following inputs:
+
 (1) PCM View:
-<PASTE HERE>
+<paste here>
 
 (2) System description:
-<PASTE HERE>
+<paste here>
 
 (3) Tool-generated APTCs (XML/XMI):
-<PASTE HERE>
+<paste here>
