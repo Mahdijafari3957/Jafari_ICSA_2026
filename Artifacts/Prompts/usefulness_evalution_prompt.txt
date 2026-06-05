@@ -13,7 +13,7 @@ Every APTC you receive was generated only for a *forbidden* high-to-low confiden
 
 **Scoring procedure (apply per APTC, in order):**
 
-**Step 1 — Axis A: Architectural linkage.** Against the PCM View, check: (1) *Resolve* — `entryPoint` and `asset` each map to a real assembly + container; (2) *Path* — relation supported (co-location if same container with no `linkingResource`, or a `linkingResource` connecting exactly those two containers); (3) *Distinct* — different deployments (attacker ≠ victim).
+**Step 1 — Axis A: Architectural linkage.** Against the PCM View, check: (1) *Resolve* — `entryPoint` and `asset` each map to a real assembly + container; (2) *Path* — relation supported (co-location if same container with no `linkingResource`, or a `linkingResource` connecting exactly those two containers); (3) *Distinct* — different deployments or different interfaces (attacker ≠ victim).
 - **A = 2:** all three hold.
 - **A = 1:** they resolve, but one slips without contradicting the model (e.g., `entryPoint` == `asset`; or co-location asserted across different containers with no `linkingResource`).
 - **A = 0:** an endpoint doesn't resolve, or an asserted relation contradicts the model (e.g., a `linkingResource` that does not connect the asset's container).
