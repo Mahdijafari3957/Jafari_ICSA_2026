@@ -19,7 +19,13 @@
   <zoneAnnotations zone="//@zones.0">
     <interface xsi:type="repository:OperationInterface" href="powerGrid.repository#_tCCZ0CwaEeylP6vhO63XvA"/>
   </zoneAnnotations>
-  <zoneAnnotations/>
-  <zoneAnnotations/>
-  <zoneAnnotations/>
+  <zoneAnnotations zone="//@zones.1">
+    <interface xsi:type="repository:OperationInterface" href="powerGrid.repository#_wMaEECwaEeylP6vhO63XvA"/>
+  </zoneAnnotations>
+  <zoneAnnotations zone="//@zones.5">
+    <interface xsi:type="repository:OperationInterface" href="powerGrid.repository#_-quHwCwaEeylP6vhO63XvA"/>
+  </zoneAnnotations>
+  <zoneAnnotations zone="//@zones.6">
+    <interface xsi:type="repository:OperationInterface" href="powerGrid.repository#_8mhKUC2ZEeyiUoiCEbquLw"/>
+  </zoneAnnotations>
 </zone:ZoneRepository>
